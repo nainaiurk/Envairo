@@ -1,5 +1,5 @@
 import 'package:envairo/constants.dart';
-import 'package:envairo/sheet/sheetdata.dart';
+import 'package:envairo/details/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -27,7 +27,7 @@ class _MapScreenState extends State<MapScreen> {
   int selectedIndex = 0;
   int toolIndex = 0;
   bool tooltip = false;
-  String dataName = 'C02';
+  String dataName = 'CO2';
   late Future<List<String>> _futureData ;
   @override
   void initState() {
@@ -156,7 +156,7 @@ class _MapScreenState extends State<MapScreen> {
                           setState(() {
                             selectedIndex = index;
                             // tooltip = !tooltip;
-                            // Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Details(countryName: data[index].country,)));
                           });
                         },
                         tooltipSettings: const MapTooltipSettings(

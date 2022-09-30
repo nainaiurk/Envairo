@@ -1,4 +1,3 @@
-import 'package:envairo/details/details_screen.dart';
 import 'package:envairo/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(color: Colors.white)
         )
       ),
-      home: const Details(),
+      home: const HomePage(),
     );
   }
 }

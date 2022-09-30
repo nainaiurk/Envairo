@@ -11,3 +11,6 @@ String sea = 'assets/images/sea-level.png';
 String background = 'assets/images/background.png';
 String logo = 'assets/images/logo1.png';
 String title = 'assets/images/title1.png';
+String transport = 'assets/images/transport.png';
+String vegetation = 'assets/images/vegetation.png';
+String confused = 'assets/images/confused.png';

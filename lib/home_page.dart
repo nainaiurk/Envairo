@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:envairo/constants.dart';
+import 'package:envairo/details/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'map/map_screen.dart';
@@ -162,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.only(left: 450),
                           child: MaterialButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const MapScreen()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> Details(countryName: selectedValue.toString(),)));
                             },
                             height: 50,
                             minWidth: 150,
