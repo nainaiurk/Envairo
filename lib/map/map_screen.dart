@@ -18,31 +18,39 @@ class _MapScreenState extends State<MapScreen> {
   late List<Model> data;
   late MapZoomPanBehavior _zoomPanBehavior;
   List<MapColorMapper> mapColorMaper = [
-    const MapColorMapper(from: 0, to: 100, color: Colors.red, text: '{0ppm},{100 ppm}'),
-    const MapColorMapper(from: 101, to: 200, color: Colors.green, text: '200ppm'),
-    const MapColorMapper(from: 201, to: 300, color: Colors.blue, text: '300ppm'),
-    const MapColorMapper(from: 301, to: 400, color: Colors.orange, text: '400ppm'),
-    const MapColorMapper(from: 401, to: 500, color: Colors.teal, text: '500ppm'),
+    const MapColorMapper(from: 0, to: 100, color: Color.fromARGB(255, 22, 162, 237), text: '{0ppm},{100 ppm}'),
+    const MapColorMapper(from: 101, to: 200, color: Color.fromARGB(255, 130, 183, 208), text: '200ppm'),
+    const MapColorMapper(from: 201, to: 300, color: Color.fromARGB(255, 224, 227, 230), text: '300ppm'),
+    const MapColorMapper(from: 301, to: 400, color: Color.fromARGB(255, 236, 182, 100), text: '400ppm'),
+    const MapColorMapper(from: 401, to: 500, color: Color.fromARGB(255, 210, 98, 7), text: '500ppm'),
   ];
   int selectedIndex = 0;
   int toolIndex = 0;
   bool tooltip = false;
-  String dataName = 'API';
+  String dataName = 'C02';
   late Future<List<String>> _futureData ;
   @override
   void initState() {
-    gsheetdata();
+    // gsheetdata();
     data = <Model>[
-      const Model('India', 280),
       const Model('United States of America', 190),
+      const Model('India', 350),
       const Model('Kazakhstan', 37),
       const Model('Italy', 201),
       const Model('Japan', 335),
       const Model('Cuba', 103),
       const Model('China', 148),
-      const Model('Bangladesh', 400)
+      const Model('Bangladesh', 500),
+      const Model('Russia', 200),
+      const Model('China', 250),
+      const Model('Australia', 100),
+      const Model('Afganistan', 400),
+      const Model('Qatar', 150),
+      const Model('Pakistan', 50),
+      const Model('Myanmar', 500),
+      const Model('Thailand', 400),
     ];
-    List.generate(239, (index) => data.add(Model(country[index+1].toString(), double.parse(apivalue[index+1]))));
+    // List.generate(239, (index) => data.add(Model(country[index+1].toString(), double.parse(apivalue[index+1]))));
     dataSource = MapShapeSource.asset(
       "assets/json/world_map.json",
       shapeDataField: "name",
@@ -187,7 +195,7 @@ class _MapScreenState extends State<MapScreen> {
                               children: [
                                 Text(
                                   data[index].country,
-                                  style: GoogleFonts.monoton(
+                                  style: GoogleFonts.roboto(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 25
                                   ),
@@ -215,11 +223,13 @@ class _MapScreenState extends State<MapScreen> {
                                     ],
                                   ),
                                 ),
-                                dataName == 'CO2'
-                                ? Text('CO2: ${data[index].count}',style: GoogleFonts.roboto(color: Colors.blue,fontSize: 15))
-                                : dataName == 'API'
-                                ? Text('API: ${data[index].count}',style: GoogleFonts.roboto(color: Colors.blue,fontSize: 15))
-                                : Text('Sea Level: ${data[index].count}',style: GoogleFonts.roboto(color: Colors.blue,fontSize: 15)),                        
+                                Center(
+                                  child: dataName == 'CO2'
+                                  ? Text('CO2: ${data[index].count} \n metric tons/capita',textAlign: TextAlign.center,style: GoogleFonts.roboto(color: Colors.blue,fontSize: 15,fontWeight: FontWeight.bold))
+                                  : dataName == 'API'
+                                  ? Text('API: ${data[index].count} \n micrograms/cubic meter',textAlign: TextAlign.center,style: GoogleFonts.roboto(color: Colors.blue,fontSize: 15,fontWeight: FontWeight.bold))
+                                  : Text('Sea Level: ${data[index].count}',textAlign: TextAlign.center,style: GoogleFonts.roboto(color: Colors.blue,fontSize: 15,fontWeight: FontWeight.bold)),
+                                ),                         
                               ],
                             ),
                           );
