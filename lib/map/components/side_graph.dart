@@ -14,9 +14,6 @@ class SideGraph extends StatelessWidget {
   final int graphNo;
 
   List<Data> co2_data = [];
-  List<Data> sea_data = [];
-  List<Data> temp_data = [];
-  List<Data> api_data = [];
   @override
   Widget build(BuildContext context) {
     return Container(

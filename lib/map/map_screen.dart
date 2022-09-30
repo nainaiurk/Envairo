@@ -1,6 +1,7 @@
 import 'package:envairo/constants.dart';
 import 'package:envairo/sheet/sheetdata.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
 import 'components/left_column.dart';
@@ -14,7 +15,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late MapShapeSource dataSource;
-  List<Model> data = [];
+  late List<Model> data;
   late MapZoomPanBehavior _zoomPanBehavior;
   List<MapColorMapper> mapColorMaper = [
     const MapColorMapper(from: 0, to: 100, color: Colors.red, text: '{0ppm},{100 ppm}'),
@@ -26,18 +27,11 @@ class _MapScreenState extends State<MapScreen> {
   int selectedIndex = 0;
   int toolIndex = 0;
   bool tooltip = false;
-  int i = 0;
+  String dataName = 'API';
   late Future<List<String>> _futureData ;
   @override
   void initState() {
-    // _futureData = gsheetdata;
     gsheetdata();
-    // print(country[13]);
-    // for (int i=0;i>10;i++){
-    //   data.add(Model(country[i].toString(), 255));
-    //   // return data.toList();
-    // }
-    List.generate(10, (index) => data.add(Model(country[index+1].toString(), 280)));
     data = <Model>[
       const Model('India', 280),
       const Model('United States of America', 190),
@@ -48,6 +42,7 @@ class _MapScreenState extends State<MapScreen> {
       const Model('China', 148),
       const Model('Bangladesh', 400)
     ];
+    List.generate(239, (index) => data.add(Model(country[index+1].toString(), double.parse(apivalue[index+1]))));
     dataSource = MapShapeSource.asset(
       "assets/json/world_map.json",
       shapeDataField: "name",
@@ -61,7 +56,6 @@ class _MapScreenState extends State<MapScreen> {
       shapeColorMappers: mapColorMaper
     );
     _zoomPanBehavior = MapZoomPanBehavior(enableMouseWheelZooming: true,enableDoubleTapZooming: true,enablePanning: true,enablePinching: true);
-    
     super.initState();
   }
 
@@ -193,7 +187,7 @@ class _MapScreenState extends State<MapScreen> {
                               children: [
                                 Text(
                                   data[index].country,
-                                  style: const TextStyle(
+                                  style: GoogleFonts.monoton(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 25
                                   ),
@@ -221,9 +215,11 @@ class _MapScreenState extends State<MapScreen> {
                                     ],
                                   ),
                                 ),
-                                const Text('CO2: 220ppm',style: TextStyle(color: Colors.blue,fontSize: 15)),
-                                const Text('API: 220ppm',style: TextStyle(color: Colors.blue,fontSize: 15)),
-                                const Text('Sea Level: 220ppm',style: TextStyle(color: Colors.blue,fontSize: 15)),                        
+                                dataName == 'CO2'
+                                ? Text('CO2: ${data[index].count}',style: GoogleFonts.roboto(color: Colors.blue,fontSize: 15))
+                                : dataName == 'API'
+                                ? Text('API: ${data[index].count}',style: GoogleFonts.roboto(color: Colors.blue,fontSize: 15))
+                                : Text('Sea Level: ${data[index].count}',style: GoogleFonts.roboto(color: Colors.blue,fontSize: 15)),                        
                               ],
                             ),
                           );

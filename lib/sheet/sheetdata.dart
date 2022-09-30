@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:gsheets/gsheets.dart';
 
 const credentials = {
@@ -33,6 +31,7 @@ Future<List<List<String>>> gsheets(title) async {
   }
 }
 late List country;
+late List apivalue;
 Future<List<String>> gsheetdata() async {
   try{
     while(true){
@@ -43,10 +42,7 @@ Future<List<String>> gsheetdata() async {
       final ss = await gsheets.spreadsheet(sheetsId);
       var sheet = ss.worksheetByTitle('API');
       country = await sheet!.values.row(1);
-      // print(country);
-      // List.generate(countries.length, (index) => country.add(countries[index].toString()));
-      // // value = await sheet.values.row(31);
-      // return country.;
+      apivalue =  await sheet.values.row(31);
     }
   }
   catch(e){
