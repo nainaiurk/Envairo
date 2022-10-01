@@ -30,22 +30,22 @@ Future<List<List<String>>> gsheets(title) async {
     throw 'Something is wrong';
   }
 }
-// late List country;
-// late List apivalue;
-// Future<List<String>> gsheetdata() async {
-//   try{
-//     while(true){
-//       await Future.delayed(const Duration(milliseconds: 500));
-//       // Stream.periodic(Duration(milliseconds: delay));
-//       var sheetsId = '1ZQkhKA2Owg-OJFbBsvSlY8Pv6dY2HxA7-4vDNADCRXY';
-//       final gsheets = GSheets(credentials);
-//       final ss = await gsheets.spreadsheet(sheetsId);
-//       var sheet = ss.worksheetByTitle('CO2');
-//       country = await sheet!.values.row(1);
-//       apivalue =  await sheet.values.row(31);
-//     }
-//   }
-//   catch(e){
-//     throw 'Something is wrong';
-//   }
-// }
+late List country;
+late List apivalue;
+Future<List<String>> gsheetdata() async {
+  try{
+    while(true){
+      await Future.delayed(const Duration(milliseconds: 500));
+      // Stream.periodic(Duration(milliseconds: delay));
+      var sheetsId = '1ZQkhKA2Owg-OJFbBsvSlY8Pv6dY2HxA7-4vDNADCRXY';
+      final gsheets = GSheets(credentials);
+      final ss = await gsheets.spreadsheet(sheetsId);
+      var sheet = ss.worksheetByTitle('CO2');
+      country = await sheet!.values.row(1);
+      apivalue =  await sheet.values.row(31);
+    }
+  }
+  catch(e){
+    throw 'Something is wrong';
+  }
+}
