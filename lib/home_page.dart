@@ -13,9 +13,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> country = ["America","Argentina","Brazil","Bangladesh","Italia", "Tunisia", 'Canada'];
+  List<String> country = ['Angola','Albania','Andorra','Arab' ,'United Arab Emirates','Argentina','Armenia','American' 'Samoa','Australia','Austria','Azerbaijan','Burundi','Belgium','Benin','Burkina' 'Faso','Bangladesh','Bulgaria','Bahrain',"Bahamas, The",'Bosnia' ,'Bolivia','Brazil','Barbados','Brunei', 'Darussalam','India','Rep','South Africa','Zambia','Zimbabwe'];
   final TextEditingController textEditingController = TextEditingController();
   String? selectedValue;
+  // int index = country.indexWhere((item) => item["id"] == a);
   @override
   Widget build(BuildContext context) {
     var maxHeight = MediaQuery.of(context).size.height;
@@ -102,8 +103,7 @@ class _HomePageState extends State<HomePage> {
                                   color: Theme.of(context).hintColor,
                                 ),
                               ),
-                              items: country
-                                      .map((item) => DropdownMenuItem<String>(
+                              items: country.map((item) => DropdownMenuItem<String>(
                                 value: item,
                                 child: Text(
                                   item,
@@ -111,8 +111,7 @@ class _HomePageState extends State<HomePage> {
                                     fontSize: 14,
                                   ),
                                 ),
-                              ))
-                                      .toList(),
+                              )).toList(),
                               value: selectedValue,
                               onChanged: (value) {
                                 setState(() {
@@ -163,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.only(left: 450),
                           child: MaterialButton(
                             onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=> Details(countryName: selectedValue.toString(),)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> Details(countryName: selectedValue.toString(), countryIndex: country.indexOf(selectedValue.toString()))));
                             },
                             height: 50,
                             minWidth: 150,

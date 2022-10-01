@@ -156,7 +156,7 @@ class _MapScreenState extends State<MapScreen> {
                           setState(() {
                             selectedIndex = index;
                             // tooltip = !tooltip;
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Details(countryName: data[index].country,)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Details(countryName: data[index].country,countryIndex: index,)));
                           });
                         },
                         tooltipSettings: const MapTooltipSettings(
